@@ -1,5 +1,16 @@
 # main.py
-import discord, os
+import logging
+import logging.config
+import os
+
+import discord
+
+# sets up logging
+logging.config.fileConfig('logging.conf', defaults={'logfilename': '/home/pi/Bot_Data/ifunny_crusader/log.txt'})
+logger = logging.getLogger("defaultLogger")
+
+# logs when the bot starts
+logger.info(f"Program started!")
 
 # gets bot token from env
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -12,20 +23,17 @@ bot = discord.Bot(intents=intents)
 @bot.event
 # prints when the bot has connected to discord
 async def on_connect():
-	print (f'\n{bot.user} has connected to Discord!')
+	logger.info(f'{bot.user} has connected to Discord!')
 	# loads the commands
 	bot.load_extension('cogs.listener')
-	# await bot.sync_commands()
 
 # prints what guilds the bot is connected to
 @bot.event
 async def on_ready():
 	await bot.wait_until_ready()
-	print(
-		f'Logged in as {bot.user} ID: {bot.user.id}\n{bot.user} has connected to the following guild(s):\n'
-	)
-	async for guild in bot.fetch_guilds(limit=None):
-		print (f'{guild.name} (id: {guild.id})')
+	guild_strings = [f"{guild.name} (id:{guild.id})\n" async for guild in bot.fetch_guilds(limit=None)]
+	logger.info(f"Logged in as {bot.user} ID: {bot.user.id}") # type: ignore
+	logger.info(f"{bot.user} has connected to the following guild(s):\n	{''.join(guild_strings)}")
 
 # runs the bot
 bot.run(BOT_TOKEN)
