@@ -3,8 +3,6 @@ services:
   main:
     build: .
     container_name: ifunny-crusader
-    volumes:
-      - /home/pi/Bot_Data/ifunny_crusader/cogs:/app/cogs
     environment:
       - BOT_TOKEN
     restart: unless-stopped
