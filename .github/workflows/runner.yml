@@ -18,4 +18,4 @@ jobs:
           TOKEN: ${{ secrets.BOT_TOKEN }}
 
       - name: Cleanup Unused Images
-        run: docker image prune -f
+        run: sudo docker image prune -f
