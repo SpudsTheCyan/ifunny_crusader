@@ -5,3 +5,4 @@ services:
     container_name: ifunny-crusader
     environment:
       - BOT_TOKEN
+    restart: unless-stopped
