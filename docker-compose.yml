@@ -7,5 +7,4 @@ services:
       - BOT_TOKEN
     restart: unless-stopped
     volumes:
-      -/home/pi/Bot_Data/ifunny_crusader/cogs:/app/
-      -/home/pi/Bot_Data/ifunny_crusader/ifunny_watermark.jpg:/app/
+      -/home/pi/Bot_Data/ifunny_crusader/cogs:/app/cogs
