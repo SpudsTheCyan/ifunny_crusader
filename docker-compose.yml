@@ -2,6 +2,6 @@ version: '3.8'
 services:
   main:
     build: .
-    container_name: ifunny_crusader
+    container_name: ifunny-crusader
     environment:
-      - TOKEN
+      - BOT_TOKEN
