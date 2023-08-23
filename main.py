@@ -4,12 +4,10 @@ import discord, os
 # gets bot token from env
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-# defines the bot obj (debug_guilds for testing ONLY)
-# IM SERIOUS YOU STUPID ASSHOLE IF YOU DONT REMOVE THIS
-# BEFORE MERGING TO MASTER I SWEAR TO GOD I WILL SMITE YOU
+# defines the bot obj
 intents = discord.Intents.default()
 intents.message_content = True
-bot = discord.Bot(debug_guilds=[364162646737682441], intents=intents)
+bot = discord.Bot(intents=intents)
 
 @bot.event
 # prints when the bot has connected to discord

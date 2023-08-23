@@ -1,8 +1,5 @@
-import discord
-import urllib
 import numpy as np
 import cv2
-
 from discord.ext import commands
 
 class IFunnyDetector(commands.Cog):
