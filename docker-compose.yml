@@ -6,3 +6,8 @@ services:
     environment:
       - BOT_TOKEN
     restart: unless-stopped
+    volumes:
+      - /app/:/home/pi/Bot_Data/ifunny_crusader/
+
+volumes:
+  app:
