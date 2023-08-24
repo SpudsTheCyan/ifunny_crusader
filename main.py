@@ -25,7 +25,9 @@ bot = discord.Bot(intents=intents)
 async def on_connect():
 	logger.info(f'{bot.user} has connected to Discord!')
 	# loads the commands
-	bot.load_extension('cogs.listener')
+	extentions_loaded = bot.load_extension('cogs.listener', store=True)
+	if extentions_loaded["cogs.listener"] == True: # type: ignore
+		logger.info("Listener Cog Loaded!")
 
 # prints what guilds the bot is connected to
 @bot.event
@@ -38,5 +40,8 @@ async def on_ready():
 # runs the bot
 bot.run(BOT_TOKEN)
 
-# invite url
+# main bot invite url
 # https://discord.com/api/oauth2/authorize?client_id=1141155606963683442&permissions=274877908992&scope=bot
+
+# dev bot invite url
+# https://discord.com/api/oauth2/authorize?client_id=1144056108747595897&permissions=274877908992&scope=bot
