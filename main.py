@@ -25,9 +25,11 @@ bot = discord.Bot(intents=intents)
 async def on_connect():
 	logger.info(f'{bot.user} has connected to Discord!')
 	# loads the commands
-	extentions_loaded = bot.load_extension('cogs.listener', store=True)
-	if extentions_loaded["cogs.listener"] == True: # type: ignore
+	extensions_loaded = bot.load_extension('cogs.listener', store=True)
+	if extensions_loaded["cogs.listener"] == True: # type: ignore
 		logger.info("Listener Cog Loaded!")
+	else:
+		logger.error("Listener Cog not loaded!")
 
 # prints what guilds the bot is connected to
 @bot.event
