@@ -176,6 +176,7 @@ cython_debug/
 actions-runner
 
 .vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -187,3 +188,5 @@ actions-runner
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+log.txt
