@@ -1,13 +1,18 @@
 #listener.py
+import logging
 from typing import Union
 
 import cv2
 import discord
 import numpy as np
+import requests
 from discord.ext import commands
 
-import requests
-from PIL import Image
+
+# makes a filter for logs
+class DebugFilter(logging.Filter):
+	def filter(self, record):
+		return not record.levelno == logging.DEBUG
 
 class IFunnyDetector(commands.Cog):
     def __init__(self, bot):
