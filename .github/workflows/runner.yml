@@ -6,14 +6,14 @@ on:
 
 jobs:
   run:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     environment: production
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Run Container
-        run: sudo docker compose -f /home/pi/Bot_Data/ifunny_crusader/docker-compose.yml up -d --build
+        run: sudo docker compose up -d --build
         env:
           BOT_TOKEN: ${{ secrets.TOKEN }}
 
