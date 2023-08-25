@@ -7,8 +7,6 @@ RUN pip install -r requirements.txt
 RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 
 COPY /cogs/ /app/cogs/
-COPY docker-compose.yml /app/
-COPY Dockerfile /app/
 COPY ifunny_watermark.jpg /app/
 COPY logging.conf /app/
 COPY main.py /app/
