@@ -6,7 +6,7 @@ on:
 
 jobs:
   run:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment: production
 
     steps:
@@ -15,7 +15,7 @@ jobs:
       - name: Run Container
         run: sudo docker compose -f /home/pi/Bot_Data/ifunny_crusader/docker-compose.yml up -d --build
         env:
-          TOKEN: ${{ secrets.TOKEN }}
+          BOT_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Cleanup Unused Images
         run: sudo docker image prune -f
