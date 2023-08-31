@@ -1,4 +1,4 @@
-name: Funny Crusader Docker Runner
+name: Docker Runner
 
 on:
   push:
@@ -9,12 +9,13 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - run: echo "Leading env var..."
+        env:
+          BOT_TOKEN: ${{ secrets.DEV_TOKEN }}
 
       - uses: actions/checkout@v3
 
       - name: Run Container
-        env:
-          BOT_TOKEN: ${{ secrets.DEV_TOKEN }}
         run: sudo docker compose -f /home/pi/Bot_Data/ifunny_crusader/docker-compose.yml up -d --build
 
       - name: Cleanup Unused Images
