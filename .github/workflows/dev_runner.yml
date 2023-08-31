@@ -9,7 +9,7 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - run: echo "Leading env var..."
+      - run: echo "Loading environment var..."
         env:
           BOT_TOKEN: ${{ secrets.DEV_TOKEN }}
 
