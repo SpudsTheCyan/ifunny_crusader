@@ -15,7 +15,7 @@ jobs:
       - name: Run Container
         env:
           BOT_TOKEN: ${{ secrets.TEST_TOKEN }}
-        run: sudo docker compose -f /home/pi/Bot_Data/ifunny_crusader/docker-compose.yml up -d --build
+        run: docker compose -f /home/pi/Bot_Data/ifunny_crusader/docker-compose.yml up -d
 
       - name: Cleanup Unused Images
         run: sudo docker image prune -f
