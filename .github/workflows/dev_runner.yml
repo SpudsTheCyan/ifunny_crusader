@@ -1,0 +1,21 @@
+name: Funny Crusader Docker Runner
+
+on:
+  push:
+    branches: [ beta ]
+
+jobs:
+  run:
+    runs-on: self-hosted
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Run Container
+        env:
+          BOT_TOKEN: ${{ secrets.DEV_TOKEN }}
+        run: sudo docker compose -f /home/pi/Bot_Data/ifunny_crusader/docker-compose.yml up -d --build
+
+      - name: Cleanup Unused Images
+        run: sudo docker image prune -f
