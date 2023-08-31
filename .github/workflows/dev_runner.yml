@@ -1,4 +1,4 @@
-name: Docker Runner
+name: Dev Docker Runner
 
 on:
   push:
