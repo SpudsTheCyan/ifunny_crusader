@@ -4,7 +4,7 @@ services:
     build: .
     container_name: ifunny-crusader
     environment:
-      - BOT_TOKEN=${{ secrets.BOT_TOKEN }}
+      - BOT_TOKEN=${BOT_TOKEN}
     restart: unless-stopped
     volumes:
       - /app/:/home/pi/Bot_Data/ifunny_crusader/
