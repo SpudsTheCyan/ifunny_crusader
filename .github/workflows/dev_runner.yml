@@ -11,7 +11,7 @@ jobs:
     runs-on: self-hosted
     environment: development
     env:
-      BOT_TOKEN: ${{ secrets.TEST_TOKEN }}
+      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
