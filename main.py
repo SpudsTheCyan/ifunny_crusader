@@ -13,9 +13,8 @@ logger = logging.getLogger("defaultLogger")
 logger.info(f"Program started!")
 
 # gets bot token from env
-BOT_TOKEN = os.environ["TOKEN"]
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 print (BOT_TOKEN)
-print(type(BOT_TOKEN))
 
 # defines the bot obj
 intents = discord.Intents.default()
