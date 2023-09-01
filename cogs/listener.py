@@ -66,20 +66,22 @@ class IFunnyDetector(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        watermarkDetected = False
+        messageSent = False
         # gets the url to every attachment in the message
         if message.attachments != []:
             for attachment in message.attachments:
-                if not watermarkDetected:
+                if not messageSent:
                     if self.image_checker(attachment): # is it a valid image?
-                        if self.watermark_detector(attachment): # does it have the watermark?
+                        watermarkDetected = await self.watermark_detector(attachment)
+                        if watermarkDetected: # does it have the watermark?
                             await message.reply("**IFUNNY DETECTED**\n**ANTI-CRINGE COUNTERMEASURES DEPLOYED**")
-                            watermarkDetected = True
-        elif not watermarkDetected:
+                            messageSent = True
+        elif not messageSent:
             if self.image_checker(message): # is it a valid image?
-                if self.watermark_detector(message): # does it have the watermark?
+                watermarkDetected = await self.watermark_detector(message)
+                if watermarkDetected: # does it have the watermark?
                     await message.reply("**IFUNNY DETECTED**\n**ANTI-CRINGE COUNTERMEASURES DEPLOYED**")
-                    watermarkDetected = True
+                    messageSent = True
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(IFunnyDetector(bot)) # add the cog to the bot
