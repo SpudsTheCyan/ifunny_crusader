@@ -13,7 +13,7 @@ logger = logging.getLogger("defaultLogger")
 logger.info(f"Program started!")
 
 # gets bot token from env
-BOT_TOKEN = os.getenv("TOKEN")
+BOT_TOKEN = os.environ["TOKEN"]
 print (BOT_TOKEN)
 print(type(BOT_TOKEN))
 
