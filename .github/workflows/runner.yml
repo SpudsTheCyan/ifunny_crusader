@@ -8,14 +8,15 @@ jobs:
   run:
     runs-on: self-hosted
     environment: production
+    env:
+      BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
 
       - name: Run Container
-        run: sudo docker compose -f /home/pi/Bot_Data/ifunny_crusader/docker-compose.yml up -d --build
-        env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+
+        run: docker compose -f /home/pi/Bot_Data/ifunny_crusader/docker-compose.yml up -d --build
 
       - name: Cleanup Unused Images
         run: sudo docker image prune -f
