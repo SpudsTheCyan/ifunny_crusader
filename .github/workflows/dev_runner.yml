@@ -1,13 +1,15 @@
-name: Docker Runner
+name: Dev Docker Runner
 
 on:
   push:
-    branches: [ main ]
+    branches: [ beta ]
+
+
 
 jobs:
   run:
     runs-on: self-hosted
-    environment: production
+    environment: development
     env:
       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
 
