@@ -39,10 +39,10 @@ class IFunnyDetector(commands.Cog):
                 return False
             
     # function to handle embedded links as well as real images
-    def watermark_detector(self, image: Union[discord.Attachment, str]):
+    async def watermark_detector(self, image: Union[discord.Attachment, str]):
         match type(image):
             case discord.message.Attachment:
-                image_bytes = image.read()
+                image_bytes = await image.read()
             case discord.message.Message:
                 response = requests.get(image.content)
                 image_bytes = response.content
@@ -66,16 +66,20 @@ class IFunnyDetector(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        watermarkDetected = False
         # gets the url to every attachment in the message
         if message.attachments != []:
             for attachment in message.attachments:
-                if self.image_checker(attachment): # is it a valid image?
-                    if self.watermark_detector(attachment): # does it have the watermark?
-                        await message.reply("**IFUNNY DETECTED**\n**ANTI-CRINGE COUNTERMEASURES DEPLOYED**")
-        else:
-                if self.image_checker(message): # is it a valid image?
-                    if self.watermark_detector(message): # does it have the watermark?
-                        await message.reply("**IFUNNY DETECTED**\n**ANTI-CRINGE COUNTERMEASURES DEPLOYED**")
+                if not watermarkDetected:
+                    if self.image_checker(attachment): # is it a valid image?
+                        if self.watermark_detector(attachment): # does it have the watermark?
+                            await message.reply("**IFUNNY DETECTED**\n**ANTI-CRINGE COUNTERMEASURES DEPLOYED**")
+                            watermarkDetected = True
+        elif not watermarkDetected:
+            if self.image_checker(message): # is it a valid image?
+                if self.watermark_detector(message): # does it have the watermark?
+                    await message.reply("**IFUNNY DETECTED**\n**ANTI-CRINGE COUNTERMEASURES DEPLOYED**")
+                    watermarkDetected = True
 
 def setup(bot): # this is called by Pycord to setup the cog
     bot.add_cog(IFunnyDetector(bot)) # add the cog to the bot
