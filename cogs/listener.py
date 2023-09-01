@@ -39,10 +39,10 @@ class IFunnyDetector(commands.Cog):
                 return False
             
     # function to handle embedded links as well as real images
-    def watermark_detector(self, image: Union[discord.Attachment, str]):
+    async def watermark_detector(self, image: Union[discord.Attachment, str]):
         match type(image):
             case discord.message.Attachment:
-                image_bytes = image.read()
+                image_bytes = await image.read()
             case discord.message.Message:
                 response = requests.get(image.content)
                 image_bytes = response.content
